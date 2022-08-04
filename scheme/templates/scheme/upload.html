@@ -1,0 +1,23 @@
+{% extends 'scheme/base.html' %}
+
+{% block title %}
+Main Page
+{% endblock title %}
+
+{% block content %}
+{% if messages %}
+<div class="ui positive message">
+    <!-- <i class="close icon"></i> -->
+    {% for message in messages %}
+    <div class="header">
+        {{ message.tags }}
+    </div>
+    <p> {{ message }} </p>
+    {% endfor %}
+</div>
+{% endif %}
+<form action="" method="POST" class="ui form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="ui button primary">Confirm</button>
+{% endblock content %}
