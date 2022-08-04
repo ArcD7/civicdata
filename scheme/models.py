@@ -5,12 +5,12 @@ from django.db import models
 # Create your models here.
 class ResourceIndex(models.Model):
     resource_id = models.AutoField(primary_key=True)
-    # metadata_id = models.IntegerField(null=True)
     name = models.CharField(max_length=128)
     description = models.CharField(max_length=128, null=True, blank=True)
     tags = models.CharField(max_length=128, null=True, blank=True)
-    file_name = models.FileField(upload_to ='csv')
+    file_name = models.FileField(upload_to ='csv', default=None)
     metadata_file = models.FileField(upload_to ='metadata', default=None, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         db_table = 'Index'
@@ -34,3 +34,11 @@ class Metadata(models.Model):
     
     class Meta:
         db_table = 'Metadata'
+
+
+class FileManagement(models.Model):
+    file_name = models.FileField(upload_to ='csv')
+    resource_id = models.ForeignKey(ResourceIndex, on_delete=models.CASCADE, db_column='resource_id')
+    
+    class Meta:
+        db_table = 'Files'
