@@ -13,7 +13,7 @@
     <ul>
         {% for data in datasets %}
         <li>
-            {{ data }}
+            <a href = '{% url "dataset-home" data %}'>{{ data|title }}</a>'
         </li>
         {% endfor %}
     </ul>
