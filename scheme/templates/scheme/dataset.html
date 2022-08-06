@@ -15,13 +15,16 @@
         {{ name }}
     </h2>
     <h4>
-        <!-- Special syntax for django to get dynamic content  -->
-        Hello
+        {{ description }}
     </h4>
     <table border="1 | 0">
         <tr>
-            <td>description</td>
-            <td>{{ description }}</td>
+            <td>No. of Files</td>
+            <td>{{ num_files|length }}</td>
+        </tr>
+        <tr>
+            <td>Metadata</td>
+            <td>{{ metadata }}</td>
         </tr>
         <tr>
             <td>tags</td>
@@ -29,12 +32,13 @@
         </tr>
         <tr>
             <td>Uploaded</td>
-            <td>{{ uploaded_at }}</td>
+            <td>{{ uploaded_at|date:"M,d,Y" }}</td>
         </tr>
     </table>
+    <br>
     <a href='{% url "dataset-download" name=name %}'>
         <button class="blue ui button">
-            <i class="download icon"></i>
+            <i class="download icon"></i> Download 
         </button>
     </a>
     </center>
