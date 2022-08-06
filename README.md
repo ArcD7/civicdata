@@ -14,6 +14,7 @@ The goal is to create a website where users can upload their data (.csv files) a
   ```
 - In the civicdata/settings.py file change the db setting to your postgres server.
   > We are using postgres as a database here
+- Run the commands `python3 manage.py makemigrations` and `python3 manage.py migrate`.
 - Run the command `python3 manage.py runserver` to start a local server.
 - Go to **http://127.0.0.1:8000** and your website is up and running.
 
