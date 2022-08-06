@@ -1,4 +1,4 @@
-# Civic Data Labs Assignment
+# CivicDataLab Assignment
 The goal is to create a website where users can upload their data (.csv files) and can download other datasets from the database.
 
 ## API Endpoints available
