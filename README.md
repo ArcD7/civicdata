@@ -2,9 +2,9 @@
 The goal is to create a website where users can upload their data (.csv files) and can download other datasets from the database.
 
 ## API Endpoints available
-- Fetch all datasets :- [name](url)
-- Upload dataset :- [name](url)
-- Information about a dataset along with file download:- [name](url)
+- Fetch all datasets :- [All datasets](http://ec2-18-222-240-153.us-east-2.compute.amazonaws.com/)
+- Upload dataset :- [Upload](http://ec2-18-222-240-153.us-east-2.compute.amazonaws.com/upload/)
+- Information about a dataset along with file download:- Can be done from the page where all datasets are listed.
 
 ## How to run the code locally?
 - Clone the repository.
@@ -14,7 +14,7 @@ The goal is to create a website where users can upload their data (.csv files) a
   ```
 - In the civicdata/settings.py file change the db setting to your postgres server.
   > We are using postgres as a database here
-- Run the commands `python3 manage.py makemigrations` and `python3 manage.py migrate`.
+- Run the command `python3 manage.py migrate`.
 - Run the command `python3 manage.py runserver` to start a local server.
 - Go to **http://127.0.0.1:8000** and your website is up and running.
 
