@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .forms import CsvModelForm
@@ -50,10 +50,11 @@ def upload_file_view(request):
             form = CsvModelForm()
             messages.success(request, "Data Added Successfully")
             
-            return render(
-            request, 
-            'scheme/upload.html',
-            {'form': form})
+            # return render(
+            # request, 
+            # 'scheme/upload.html',
+            # {'form': form})
+            return redirect(index)
     else:
         form = CsvModelForm()
     
@@ -102,6 +103,7 @@ def dataset_download(request, name):
             metadata_path = file_id.metadata_file.path
             archive.write(metadata_path, arcname="metadata.csv")
     
-    response = HttpResponse(zip_file, content_type="application/x-zip-compressed")
+    zf = open(zip_file, 'rb')
+    response = HttpResponse(zf, content_type="application/zip")
     response['Content-Disposition'] = f"attachment; filename={name}.zip"
     return response

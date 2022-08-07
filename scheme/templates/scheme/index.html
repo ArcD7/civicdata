@@ -10,6 +10,17 @@
     <title>All Datasets</title>
 </head>
 <body>
+    {% if messages %}
+    <div class="ui compact positive message">
+    <!-- <i class="close icon"></i> -->
+    {% for message in messages %}
+    <div class="header">
+        {{ message.tags }}
+    </div>
+    <p> {{ message }} </p>
+    {% endfor %}
+    </div>
+    {% endif %}
     <h1>
         All Datasets
     </h1>
