@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-qb47@b#@lk3zlj4in79g11a=eha&xcd_wj$9dao0&gwpz9#7%%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'civicdata.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "civicdata",
         'USER': 'postgres',
         'PASSWORD': 'postgres',
