@@ -6,6 +6,7 @@ from .forms import CsvModelForm
 from .models import ResourceIndex, FileManagement
 
 import zipfile
+import os
 
 # View that will display all the datasets.
 def index(request):
@@ -93,7 +94,7 @@ def dataset_download(request, name):
     zip_file = f"media/csv/{file_id.name}.zip"
     
     # Open the Zip file and append csv's.
-    with zipfile.ZipFile(zip_file, "a") as archive:
+    with zipfile.ZipFile(zip_file, "w") as archive:
         for f in files:
             filename = f.file_name.name.split("/")
             filepath = f.file_name.path
@@ -107,3 +108,24 @@ def dataset_download(request, name):
     response = HttpResponse(zf, content_type="application/zip")
     response['Content-Disposition'] = f"attachment; filename={name}.zip"
     return response
+
+# Delete dataset and its files.
+def dataset_delete(request, name):
+    # Get the required data from the dataset.
+    file_id = ResourceIndex.objects.get(name=name)
+    files = FileManagement.objects.filter(resource_id=file_id.resource_id)
+    
+    # Delete resource files.
+    if files.exists():
+        for f in files:
+            filepath = f.file_name.path
+            os.remove(filepath)
+    # Delete metadata file.
+    if file_id.metadata_file:
+        metadata_path = file_id.metadata_file.path
+        os.remove(metadata_path)
+
+    # Delete file instance.
+    file_id.delete()
+    messages.success(request, "Dataset Deleted Successfully")
+    return redirect(index)

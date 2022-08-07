@@ -41,6 +41,11 @@
             <i class="download icon"></i> Download 
         </button>
     </a>
+    <a href='{% url "dataset-delete" name=name %}'>
+        <button class="red ui button">
+            <i class="trash icon"></i> Delete 
+        </button>
+    </a>
     <a href='{% url "homepage" %}'>
         <button class="blue ui button">
             <i class="left arrow icon"></i> Back to Homepage 
